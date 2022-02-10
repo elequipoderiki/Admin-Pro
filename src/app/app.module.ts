@@ -7,6 +7,7 @@ import { PagesModule } from './pages/pages.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   //al declarar estos artefactos aqui permite su uso desde otros artefactos
@@ -19,6 +20,7 @@ import { RegisterComponent } from './login/register.component';
   imports: [
     BrowserModule,
     APP_ROUTES,
+    FormsModule,
     PagesModule,
   ],
   providers: [],
