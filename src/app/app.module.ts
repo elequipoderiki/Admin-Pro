@@ -7,7 +7,8 @@ import { PagesModule } from './pages/pages.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServiceModule } from './services/service.module';
 
 @NgModule({
   //al declarar estos artefactos aqui permite su uso desde otros artefactos
@@ -22,6 +23,8 @@ import { FormsModule } from '@angular/forms';
     APP_ROUTES,
     FormsModule,
     PagesModule,
+    ReactiveFormsModule,
+    ServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,10 @@
  import { DOCUMENT } from '@angular/common';
 import { Injectable, Inject } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
+@Injectable()
 export class SettingsService {
 
   ajustes: Ajustes = {
