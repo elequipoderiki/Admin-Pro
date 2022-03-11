@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import {
+  LoginGuardGuard,
   SettingsService,
-  SidebarService,
   SharedService,
-  UsuarioService,
-  LoginGuardGuard
+  SidebarService,
+  SubirArchivoService,
+  UsuarioService
 } from './service.index'
 //note all services coming from service.index file in order to allow service files
 //to change location without problems
@@ -19,11 +20,12 @@ import {
     HttpClientModule
   ],
   providers: [
+    LoginGuardGuard,
     SettingsService,
-    SidebarService,
     SharedService,
-    UsuarioService,
-    LoginGuardGuard
+    SidebarService,
+    SubirArchivoService,
+    UsuarioService
   ]
 })
 export class ServiceModule { }

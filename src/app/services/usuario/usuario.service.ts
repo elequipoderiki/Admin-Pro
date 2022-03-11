@@ -6,6 +6,7 @@ import { URL_SERVICIOS } from 'src/app/config/config';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 @Injectable()
 export class UsuarioService {
@@ -16,7 +17,7 @@ export class UsuarioService {
   //import httpclientmodule from service.module is needed too (see service.module 
   //imports) because importings here only have scope for this class whereas 
   //importing httpclientmodule in service.module allow use of that module in templates
-  constructor(public http: HttpClient, public router : Router) { 
+  constructor(public http: HttpClient, public router : Router, public _subirArchivoService: SubirArchivoService) { 
     this.cargarStorage();    
   }
 
@@ -93,5 +94,40 @@ export class UsuarioService {
         })
       )
   }
-  
+
+  actualizarUsuario(usuario: Usuario){
+    let url = URL_SERVICIOS + '/usuario/' + usuario._id;
+    url += '?token=' + this.token;
+    
+    return this.http.put(url, usuario)
+      .pipe(
+        map((resp:any) => {
+          // this.usuario = resp.usuario;
+          let usuarioDB: Usuario = resp.usuario;
+          this.guardarStorage(usuarioDB._id!, this.token!, usuarioDB);
+          Swal.fire({
+            title: "Usuario actualizado",
+            text: usuario.nombre?.toString(),
+            icon: 'success'    
+          });
+          return true;
+        })
+      )
+  }
+
+  cambiarImagen(archivo: File , id: string ){
+    this._subirArchivoService.subirArchivo(archivo, 'usuarios', id)
+      .then((resp : any)=> {
+        this.usuario!.img = resp.usuario.img;
+        Swal.fire({
+          title: "Imagen Actualizada",
+          text: this.usuario?.nombre!,
+          icon: 'success'    
+        });
+        this.guardarStorage(id, this.token!, this.usuario!);
+      })
+      .catch(resp => {
+        console.log(resp);
+      });
+  }
 }

@@ -7,6 +7,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { LoginGuardGuard } from '../services/service.index';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const pagesRoutes: Routes = [
@@ -46,6 +47,11 @@ const pagesRoutes: Routes = [
                 component: AccountSettingsComponent,
                 data: { titulo: 'Ajustes del tema'}
             },                        
+            {
+                path: 'perfil',
+                component: ProfileComponent, 
+                data: {titulo: 'Perfil de usuario'}
+            },
             {
                 path:'',
                 redirectTo: '/dashboard',
