@@ -9,7 +9,9 @@ import {
   SharedService,
   SidebarService,
   SubirArchivoService,
-  UsuarioService
+  UsuarioService,
+  HospitalService,
+  MedicoService
 } from './service.index'
 //note all services coming from service.index file in order to allow service files
 //to change location without problems
@@ -27,7 +29,9 @@ import {
     SidebarService,
     SubirArchivoService,
     UsuarioService,
-    ModalUploadService
+    ModalUploadService,
+    HospitalService,
+    MedicoService
   ]
 })
 export class ServiceModule { }
