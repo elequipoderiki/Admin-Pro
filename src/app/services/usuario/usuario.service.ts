@@ -59,6 +59,30 @@ export class UsuarioService {
     this.router.navigate(['/login']);
   }
 
+  renuevaToken() {
+    let url = URL_SERVICIOS + '/login/renuevaToken';
+    url += '?token=' + this.token;
+    return this.http.get(url)
+      .pipe(
+        map( (resp: any) => {
+          this.token = resp.token;
+          localStorage.setItem('token', this.token!);
+          console.log('token renovado');
+          return true;
+        }),
+        catchError(err => {
+          this.router.navigate(['/login']);
+          Swal.fire({
+            title: "No se pudo renovar token",
+            text: "no fue posible renovar token",
+            icon: 'error'    
+          });
+
+          return throwError(()=>err);
+        })
+      )
+  }
+
   loginGoogle(token: string){
     let url = URL_SERVICIOS + '/login/google';
     return this.http.post(url, {token})

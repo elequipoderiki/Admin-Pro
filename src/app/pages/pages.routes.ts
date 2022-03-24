@@ -16,18 +16,14 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
 
 
 const pagesRoutes: Routes = [
-    {
-        //si ruta es vacia entonces por esta definicion se carga este componente
-        path: '',
-        component: PagesComponent,
-        canActivate: [LoginGuardGuard],
-        children: [
             { 
                 path:'dashboard',
                 component: DashboardComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Dashboard'}
             },
             { 
@@ -93,7 +89,6 @@ const pagesRoutes: Routes = [
                 pathMatch: 'full'
             },
         ]
-    },
-];
+    
 
 export const PAGES_ROUTES = RouterModule.forChild(pagesRoutes);

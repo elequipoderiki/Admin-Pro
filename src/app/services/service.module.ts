@@ -12,7 +12,8 @@ import {
   SubirArchivoService,
   UsuarioService,
   HospitalService,
-  MedicoService
+  MedicoService,
+  VerificaTokenGuard
 } from './service.index'
 //note all services coming from service.index file in order to allow service files
 //to change location without problems
@@ -33,7 +34,8 @@ import {
     UsuarioService,
     ModalUploadService,
     HospitalService,
-    MedicoService
+    MedicoService,
+    VerificaTokenGuard
   ]
 })
 export class ServiceModule { }
